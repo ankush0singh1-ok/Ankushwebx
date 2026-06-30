@@ -8,13 +8,16 @@
         </title>
         <link rel="icon" href="ff.jpg">
         <style>
+            body{
+                background-color: #111827;
+            }
             #outer
             {
                min-height: 800px;
                 width: auto;
                 display: flex;
                 flex-direction: column;
-                background-color:white;
+                background-color:#111827;
 
             }
             #header
@@ -59,6 +62,7 @@
                 top: 0;
                 z-index: 100;
                 border-radius: 0px 0px 10px 10px;
+                padding-bottom: 30px;
             }
             #menu ul li
             {
@@ -67,6 +71,13 @@
                 margin-right: 85px;
                 transition: .5s;
                 color: rgb(0, 0, 0);
+                background-color: green;
+                height: 50px;
+                width: 100px;
+                line-height: 50px;
+                border-radius: 5px;
+                box-sizing: border-box;
+                text-align: center;
             }
             #menu ul li:hover
             {
@@ -462,8 +473,34 @@ p{
     setTimeout(function () {
         document.getElementById("loader").style.display = "none";
         document.getElementById("content").style.display = "flex";
-    }, 3000); // 3000 ms = 3 seconds
+    }, 3000);
 };
+
+function autoMenuEffect() {
+    const items = document.querySelectorAll("#menu ul li");
+    let current = 0;
+
+    setInterval(() => {
+        // Reset all items
+        items.forEach(item => {
+            item.style.transform = "scale(1)";
+            item.style.color = "white";
+            item.style.background = "green";
+            item.style.transition = "all 0.5s";
+        });
+
+        // Highlight current item
+        items[current].style.transform = "scale(1.2)";
+        items[current].style.color = "yellow";
+        items[current].style.background = "darkGreen";
+
+        // Move to next item
+        current = (current + 1) % items.length;
+    }, 1000); // Change every 1 second
+}
+
+// Start automatically
+autoMenuEffect();
         </script>
     </body>
 </html>
